@@ -9,5 +9,12 @@
 import Foundation
 
 class DataSource {
-    static let data: [Dictionary<String, String>] = [["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"], ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"], ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"], ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"], ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"], ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"]]
+    static let dataTemplate: [Dictionary<String, String>] = [["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"], ["thumbnail": "https://4.bp.blogspot.com/-W5G9ZcmGDW0/W5u-IkoSifI/AAAAAAAAA_A/XRzI9E9bsbsTnz7KdeygEWL1debGE_AkQCEwYBhgL/s1600/20180914_094056.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"], ["thumbnail": "https://4.bp.blogspot.com/-G7HhVx1Swac/V4_N51dcwxI/AAAAAAABpAw/w8_k1uJsLrgAdLKREJQLxjWZoPGFGfl4QCLcB/s1600/funny-cats-216-17.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"]]
+    
+    private var _data: [Dictionary<String, String>] = []
+    
+    func fetchData() -> [Dictionary<String, String>]{
+        _data.append(contentsOf: DataSource.dataTemplate)
+        return _data
+    }
 }

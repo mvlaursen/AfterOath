@@ -10,6 +10,9 @@ import UIKit
 import AVKit
 
 class TableViewController: UITableViewController {
+    let dataSource = DataSource()
+    var data: [Dictionary<String, String>] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +21,8 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        data = dataSource.fetchData()
     }
 
     // MARK: - Table view data source
@@ -30,12 +35,12 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         // #warning Number of rows temporarily set to 1
-        return DataSource.data.count
+        return data.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thumbnailCell", for: indexPath) as! TableViewCell
-        if let imagePath = DataSource.data[indexPath.row]["thumbnail"] {
+        if let imagePath = data[indexPath.row]["thumbnail"] {
             if let imageData = try? Data(contentsOf: URL(string: imagePath)!) {
                 cell.imageView?.image = UIImage(data: imageData)
             }
@@ -79,7 +84,7 @@ class TableViewController: UITableViewController {
     */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let videoPath = DataSource.data[indexPath.row]["hfs"] {
+        if let videoPath = data[indexPath.row]["hfs"] {
             let player = AVPlayer(url: URL(string: videoPath)!)
             let avpvc = AVPlayerViewController()
             avpvc.player = player
