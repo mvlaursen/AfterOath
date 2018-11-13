@@ -14,6 +14,7 @@
 		3B298EBC219B556A001331C8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B298EBB219B556A001331C8 /* TableViewController.swift */; };
 		3B298EBE219B55B1001331C8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B298EBD219B55B1001331C8 /* TableViewCell.swift */; };
 		3B298EC0219B5A97001331C8 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B298EBF219B5A97001331C8 /* DataSource.swift */; };
+		3B298EC3219B6139001331C8 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B298EC2219B6139001331C8 /* AVKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3B298EBB219B556A001331C8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		3B298EBD219B55B1001331C8 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3B298EBF219B5A97001331C8 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		3B298EC2219B6139001331C8 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B298EC3219B6139001331C8 /* AVKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 			children = (
 				3B298EA8219B5523001331C8 /* AfterOath */,
 				3B298EA7219B5523001331C8 /* Products */,
+				3B298EC1219B6138001331C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +72,14 @@
 				3B298EB5219B5524001331C8 /* Info.plist */,
 			);
 			path = AfterOath;
+			sourceTree = "<group>";
+		};
+		3B298EC1219B6138001331C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B298EC2219B6139001331C8 /* AVKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

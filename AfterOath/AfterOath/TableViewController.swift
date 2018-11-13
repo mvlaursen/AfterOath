@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class TableViewController: UITableViewController {
     override func viewDidLoad() {
@@ -76,6 +77,17 @@ class TableViewController: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let videoPath = DataSource.data[indexPath.row]["hfs"] {
+            let player = AVPlayer(url: URL(string: videoPath)!)
+            let avpvc = AVPlayerViewController()
+            avpvc.player = player
+            present(avpvc, animated: true) {
+                avpvc.player?.play()
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
