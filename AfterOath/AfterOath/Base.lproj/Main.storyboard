@@ -18,12 +18,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="thumbnailCell" id="wlB-Zw-RJo" customClass="TableViewCell" customModule="AfterOath" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="thumbnailCell" rowHeight="180" id="wlB-Zw-RJo" customClass="TableViewCell" customModule="AfterOath" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wlB-Zw-RJo" id="eY6-e6-lmg">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wlB-Zw-RJo" id="eY6-e6-lmg">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="uTG-Ue-zRy">
+                                            <rect key="frame" x="10" y="10.5" width="90" height="160"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="160" id="AUh-wC-8dS"/>
+                                                <constraint firstAttribute="width" constant="90" id="TVM-qB-tzo"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="uTG-Ue-zRy" secondAttribute="bottom" constant="10" id="Uzp-d4-kUc"/>
+                                        <constraint firstItem="uTG-Ue-zRy" firstAttribute="top" secondItem="eY6-e6-lmg" secondAttribute="top" constant="10" id="WXC-kZ-usq"/>
+                                        <constraint firstItem="uTG-Ue-zRy" firstAttribute="leading" secondItem="eY6-e6-lmg" secondAttribute="leading" constant="10" id="j7j-EH-cl0"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -35,7 +49,10 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yid-qa-PvU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-131" y="-109"/>
+            <point key="canvasLocation" x="-131.25" y="-110"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholder" width="900" height="1600"/>
+    </resources>
 </document>
