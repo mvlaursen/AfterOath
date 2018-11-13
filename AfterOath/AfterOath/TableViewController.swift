@@ -9,7 +9,6 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,12 +29,16 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         // #warning Number of rows temporarily set to 1
-        return 1
+        return DataSource.data.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thumbnailCell", for: indexPath) as! TableViewCell
-        // Configure the cell...
+        if let imagePath = DataSource.data[indexPath.row]["thumbnail"] {
+            if let imageData = try? Data(contentsOf: URL(string: imagePath)!) {
+                cell.imageView?.image = UIImage(data: imageData)
+            }
+        }
         return cell
     }
 

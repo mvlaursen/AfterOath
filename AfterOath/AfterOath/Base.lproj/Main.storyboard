@@ -39,6 +39,9 @@
                                         <constraint firstItem="uTG-Ue-zRy" firstAttribute="leading" secondItem="eY6-e6-lmg" secondAttribute="leading" constant="10" id="j7j-EH-cl0"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="thumbnailImageView" destination="uTG-Ue-zRy" id="Ydw-wF-weI"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
