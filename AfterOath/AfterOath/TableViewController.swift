@@ -23,6 +23,7 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         data = dataSource.fetchData()
+        data = dataSource.fetchData()
     }
 
     // MARK: - Table view data source
