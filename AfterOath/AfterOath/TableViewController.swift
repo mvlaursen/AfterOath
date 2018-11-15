@@ -10,6 +10,8 @@ import UIKit
 import AVKit
 
 class TableViewController: UITableViewController {
+    static let scrollOnLastRowHysteresis = CGFloat(integerLiteral: 45)
+    
     let dataSource = DataSource()
     var data: [Dictionary<String, String>] = []
     
@@ -98,8 +100,7 @@ class TableViewController: UITableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentSize.height > 0.0 {
             let totalHeight = scrollView.contentSize.height - scrollView.contentOffset.y
-            // TODO: Instead of 45, use some fraction of the cell height.
-            if (totalHeight + 45 < scrollView.frame.size.height) {
+            if (totalHeight + TableViewController.scrollOnLastRowHysteresis < scrollView.frame.size.height) {
                 dataSource.fetchData(completion: updateOnNewData)
             }
         }
