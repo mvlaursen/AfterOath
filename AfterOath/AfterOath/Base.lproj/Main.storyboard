@@ -22,24 +22,39 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wlB-Zw-RJo" id="eY6-e6-lmg">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="uTG-Ue-zRy">
-                                            <rect key="frame" x="10" y="10.5" width="90" height="160"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="uTG-Ue-zRy">
+                                            <rect key="frame" x="10" y="10" width="90" height="160"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="160" id="AUh-wC-8dS"/>
                                                 <constraint firstAttribute="width" constant="90" id="TVM-qB-tzo"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGf-y9-Z4j">
+                                            <rect key="frame" x="108" y="80" width="196" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="AQc-RM-6aD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="lGf-y9-Z4j" firstAttribute="leading" secondItem="uTG-Ue-zRy" secondAttribute="trailing" constant="8" id="6jG-RI-Vco"/>
                                         <constraint firstAttribute="bottom" secondItem="uTG-Ue-zRy" secondAttribute="bottom" constant="10" id="Uzp-d4-kUc"/>
                                         <constraint firstItem="uTG-Ue-zRy" firstAttribute="top" secondItem="eY6-e6-lmg" secondAttribute="top" constant="10" id="WXC-kZ-usq"/>
                                         <constraint firstItem="uTG-Ue-zRy" firstAttribute="leading" secondItem="eY6-e6-lmg" secondAttribute="leading" constant="10" id="j7j-EH-cl0"/>
+                                        <constraint firstItem="lGf-y9-Z4j" firstAttribute="trailing" secondItem="eY6-e6-lmg" secondAttribute="trailingMargin" id="w2O-tq-2wN"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="lGf-y9-Z4j" firstAttribute="centerY" secondItem="wlB-Zw-RJo" secondAttribute="centerY" id="Jz1-Bw-d24"/>
+                                </constraints>
                                 <connections>
+                                    <outlet property="label" destination="lGf-y9-Z4j" id="cSb-fd-CpC"/>
                                     <outlet property="thumbnailImageView" destination="uTG-Ue-zRy" id="Ydw-wF-weI"/>
                                 </connections>
                             </tableViewCell>
