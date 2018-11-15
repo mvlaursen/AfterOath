@@ -22,8 +22,7 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        data = dataSource.fetchData()
-        data = dataSource.fetchData()
+        dataSource.fetchData(completion: updateOnNewData)
     }
 
     // MARK: - Table view data source
@@ -94,6 +93,16 @@ class TableViewController: UITableViewController {
             }
         }
     }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentSize.height > 0.0 {
+            let totalHeight = scrollView.contentSize.height - scrollView.contentOffset.y
+            // TODO: Instead of 45, use some fraction of the cell height.
+            if (totalHeight + 45 < scrollView.frame.size.height) {
+                dataSource.fetchData(completion: updateOnNewData)
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -104,5 +113,11 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // MARK: - Data
+    
+    func updateOnNewData(newData: [Dictionary<String, String>]) {
+        self.data = newData
+        self.tableView.reloadData()
+    }
 }
