@@ -10,7 +10,8 @@ import UIKit
 import AVKit
 
 class TableViewController: UITableViewController {
-    static let scrollOnLastRowHysteresis = CGFloat(integerLiteral: 45)
+    static let kScrollOnLastRowHysteresis = CGFloat(integerLiteral: 45)
+    static let kRowHeight = CGFloat(integerLiteral: 180)
     
     let activityIndicator = UIActivityIndicatorView(style: .gray)
     let dataSource = DataSource()
@@ -24,10 +25,12 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        tableView.rowHeight = TableViewController.kRowHeight
                 
         activityIndicator.hidesWhenStopped = true
         tableView.addSubview(activityIndicator)
-        activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.scrollOnLastRowHysteresis)
+        activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.kScrollOnLastRowHysteresis)
         tableView.bringSubviewToFront(activityIndicator)
         activityIndicator.startAnimating()
         dataSource.fetchData(completion: updateOnNewData)
@@ -106,8 +109,8 @@ class TableViewController: UITableViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentSize.height > 0.0 {
             let totalHeight = scrollView.contentSize.height - scrollView.contentOffset.y
-            if (totalHeight + TableViewController.scrollOnLastRowHysteresis < scrollView.frame.size.height) {
-                activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.scrollOnLastRowHysteresis)
+            if (totalHeight + TableViewController.kScrollOnLastRowHysteresis < scrollView.frame.size.height) {
+                activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.kScrollOnLastRowHysteresis)
                 tableView.bringSubviewToFront(activityIndicator)
                 activityIndicator.startAnimating()
                 dataSource.fetchData(completion: updateOnNewData)
