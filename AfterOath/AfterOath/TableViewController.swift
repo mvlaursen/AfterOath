@@ -12,6 +12,7 @@ import AVKit
 class TableViewController: UITableViewController {
     static let scrollOnLastRowHysteresis = CGFloat(integerLiteral: 45)
     
+    let activityIndicator = UIActivityIndicatorView(style: .gray)
     let dataSource = DataSource()
     var data: [Dictionary<String, String>] = []
     
@@ -23,7 +24,12 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+                
+        activityIndicator.hidesWhenStopped = true
+        tableView.addSubview(activityIndicator)
+        activityIndicator.center = CGPoint(x: tableView.center.x, y: tableView.frame.height - 45 / 2)
+        tableView.bringSubviewToFront(activityIndicator)
+        activityIndicator.startAnimating()
         dataSource.fetchData(completion: updateOnNewData)
     }
 
@@ -101,6 +107,9 @@ class TableViewController: UITableViewController {
         if scrollView.contentSize.height > 0.0 {
             let totalHeight = scrollView.contentSize.height - scrollView.contentOffset.y
             if (totalHeight + TableViewController.scrollOnLastRowHysteresis < scrollView.frame.size.height) {
+                activityIndicator.center = tableView.center
+                tableView.bringSubviewToFront(activityIndicator)
+                activityIndicator.startAnimating()
                 dataSource.fetchData(completion: updateOnNewData)
             }
         }
@@ -119,7 +128,8 @@ class TableViewController: UITableViewController {
     // MARK: - Data
     
     func updateOnNewData(newData: [Dictionary<String, String>]) {
-        self.data = newData
-        self.tableView.reloadData()
+        data = newData
+        activityIndicator.stopAnimating()
+        tableView.reloadData()
     }
 }
