@@ -34,6 +34,8 @@ class TableViewController: UITableViewController {
         tableView.bringSubviewToFront(activityIndicator)
         activityIndicator.startAnimating()
         dataSource.fetchData(completion: updateOnNewData)
+        
+        tableView.prefetchDataSource = self
     }
 
     // MARK: - Table view data source
@@ -106,18 +108,6 @@ class TableViewController: UITableViewController {
         }
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentSize.height > 0.0 {
-            let totalHeight = scrollView.contentSize.height - scrollView.contentOffset.y
-            if (totalHeight + TableViewController.kScrollOnLastRowHysteresis < scrollView.frame.size.height) {
-                activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.kScrollOnLastRowHysteresis)
-                tableView.bringSubviewToFront(activityIndicator)
-                activityIndicator.startAnimating()
-                dataSource.fetchData(completion: updateOnNewData)
-            }
-        }
-    }
-
     /*
     // MARK: - Navigation
 
@@ -136,3 +126,10 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
 }
+
+extension TableViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        dataSource.fetchData(completion: updateOnNewData)
+    }
+}
+
