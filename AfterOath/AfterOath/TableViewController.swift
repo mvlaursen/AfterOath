@@ -27,7 +27,7 @@ class TableViewController: UITableViewController {
                 
         activityIndicator.hidesWhenStopped = true
         tableView.addSubview(activityIndicator)
-        activityIndicator.center = CGPoint(x: tableView.center.x, y: tableView.frame.height - 45 / 2)
+        activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.scrollOnLastRowHysteresis)
         tableView.bringSubviewToFront(activityIndicator)
         activityIndicator.startAnimating()
         dataSource.fetchData(completion: updateOnNewData)
@@ -107,7 +107,7 @@ class TableViewController: UITableViewController {
         if scrollView.contentSize.height > 0.0 {
             let totalHeight = scrollView.contentSize.height - scrollView.contentOffset.y
             if (totalHeight + TableViewController.scrollOnLastRowHysteresis < scrollView.frame.size.height) {
-                activityIndicator.center = tableView.center
+                activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.scrollOnLastRowHysteresis)
                 tableView.bringSubviewToFront(activityIndicator)
                 activityIndicator.startAnimating()
                 dataSource.fetchData(completion: updateOnNewData)
