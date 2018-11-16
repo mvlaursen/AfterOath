@@ -14,8 +14,7 @@ class TableViewController: UITableViewController {
     static let kRowHeight = CGFloat(integerLiteral: 180)
     
     let activityIndicator = UIActivityIndicatorView(style: .gray)
-    let dataSource = DataSource()
-    var data: [Dictionary<String, String>] = []
+    let dataFetcher = DataFetchSimulator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +30,8 @@ class TableViewController: UITableViewController {
         activityIndicator.hidesWhenStopped = true
         tableView.addSubview(activityIndicator)
         activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.kScrollOnLastRowHysteresis)
-        tableView.bringSubviewToFront(activityIndicator)
-        activityIndicator.startAnimating()
-        dataSource.fetchData(completion: updateOnNewData)
+//        tableView.bringSubviewToFront(activityIndicator)
+//        activityIndicator.startAnimating()
         
         tableView.prefetchDataSource = self
     }
@@ -48,13 +46,13 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         // #warning Number of rows temporarily set to 1
-        return data.count
+        return dataFetcher.localData.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thumbnailCell", for: indexPath) as! TableViewCell
         cell.label.text = String("Row Number: \(indexPath.row)")
-        if let imagePath = data[indexPath.row]["thumbnail"] {
+        if let imagePath = dataFetcher.localData[indexPath.row]["thumbnail"] {
             if let imageData = try? Data(contentsOf: URL(string: imagePath)!) {
                 cell.thumbnailImageView.image = UIImage(data: imageData)
             }
@@ -98,7 +96,7 @@ class TableViewController: UITableViewController {
     */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let videoPath = data[indexPath.row]["hfs"] {
+        if let videoPath = dataFetcher.localData[indexPath.row]["hfs"] {
             let player = AVPlayer(url: URL(string: videoPath)!)
             let avpvc = AVPlayerViewController()
             avpvc.player = player
@@ -120,16 +118,16 @@ class TableViewController: UITableViewController {
     
     // MARK: - Data
     
-    func updateOnNewData(newData: [Dictionary<String, String>]) {
-        data = newData
+    func updateOnNewData(indexPaths: [IndexPath]) {
         activityIndicator.stopAnimating()
-        tableView.reloadData()
+        tableView.reloadRows(at: indexPaths, with: .bottom)
     }
 }
 
 extension TableViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        dataSource.fetchData(completion: updateOnNewData)
+        print("prefetchRowsAt: \(indexPaths)")
+        dataFetcher.fetchData(indexPaths: indexPaths, completion: updateOnNewData)
     }
 }
 
