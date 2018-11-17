@@ -13,7 +13,6 @@ class TableViewController: UITableViewController {
     static let kScrollOnLastRowHysteresis = CGFloat(integerLiteral: 45)
     static let kRowHeight = CGFloat(integerLiteral: 180)
     
-    let activityIndicator = UIActivityIndicatorView(style: .gray)
     let dataFetcher = DataFetchSimulator()
     
     override func viewDidLoad() {
@@ -26,27 +25,21 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.rowHeight = TableViewController.kRowHeight
-                
-        activityIndicator.hidesWhenStopped = true
-        tableView.addSubview(activityIndicator)
-        activityIndicator.center = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height - 3.0 * TableViewController.kScrollOnLastRowHysteresis)
-//        tableView.bringSubviewToFront(activityIndicator)
-//        activityIndicator.startAnimating()
-        
+
         tableView.prefetchDataSource = self
+        if let indexPaths = tableView.indexPathsForVisibleRows {
+            dataFetcher.fetchData(indexPaths: indexPaths)
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        // #warning Number of rows temporarily set to 1
-        return dataFetcher.recordsFetched
+        return dataFetcher.recordsTotal
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,19 +108,11 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    // MARK: - Data
-    
-    func updateOnNewData(indexPaths: [IndexPath]) {
-        activityIndicator.stopAnimating()
-        tableView.reloadRows(at: indexPaths, with: .bottom)
-    }
 }
 
 extension TableViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        print("prefetchRowsAt: \(indexPaths)")
-        dataFetcher.fetchData(indexPaths: indexPaths, completion: updateOnNewData)
+        dataFetcher.fetchData(indexPaths: indexPaths)
     }
 }
 
