@@ -27,8 +27,10 @@ class TableViewController: UITableViewController {
         tableView.rowHeight = TableViewController.kRowHeight
 
         tableView.prefetchDataSource = self
-        if let indexPaths = tableView.indexPathsForVisibleRows {
-            dataFetcher.fetchData(indexPaths: indexPaths)
+        dataFetcher.fetchData(maxRow: 3) {
+            if let indexPaths = self.tableView.indexPathsForVisibleRows {
+                self.tableView.reloadRows(at: indexPaths, with: .automatic)
+            }
         }
     }
 

@@ -50,10 +50,7 @@ class DataFetchSimulator {
         return dataRecords[index]
     }
     
-    func fetchData(indexPaths: [IndexPath]) {
-        let maxRow: Int = indexPaths.reduce(0) { (maxRow, indexPath) -> Int in
-            max(maxRow, indexPath.row)
-        }
+    func fetchData(maxRow: Int, completion: @escaping () -> ()) {
         guard maxRow >= 0 && maxRow < dataRecords.count else {
             return
         }
@@ -63,7 +60,16 @@ class DataFetchSimulator {
             Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
                 self.recordsFetched = maxRow + 1
                 self.fetching = false
+                completion()
             }
+        }
+    }
+
+    func fetchData(indexPaths: [IndexPath]) {
+        let maxRow: Int = indexPaths.reduce(0) { (maxRow, indexPath) -> Int in
+            max(maxRow, indexPath.row)
+        }
+        fetchData(maxRow: maxRow) {
         }
     }
 }
