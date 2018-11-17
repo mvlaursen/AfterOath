@@ -9,9 +9,11 @@
 import Foundation
 
 class DataFetchSimulator {
+    typealias DataRecord = Dictionary<String, String>
+
     static let shared = DataFetchSimulator()
     
-    typealias DataRecord = Dictionary<String, String>
+    static let simulatedDelay = 10.0
     
     private let dataRecords: [DataRecord] = [
         ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
@@ -42,7 +44,6 @@ class DataFetchSimulator {
     var recordsFetched = 0
     
     private init() {
-        
     }
     
     var recordsTotal: Int {
@@ -65,7 +66,7 @@ class DataFetchSimulator {
         
         if !fetching && maxRow > recordsFetched - 1 {
             fetching = true
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
+            Timer.scheduledTimer(withTimeInterval: DataFetchSimulator.simulatedDelay, repeats: false) { (_) in
                 self.recordsFetched = maxRow + 1
                 self.fetching = false
                 completion()
@@ -82,6 +83,10 @@ class DataFetchSimulator {
     }
     
     func loadThumbnail(indexPath: IndexPath, completion: @escaping () -> ()) {
+        guard indexPath.row < recordsFetched else {
+            return
+        }
+        
         if thumbnailDataCache.object(forKey: indexPath as NSIndexPath) != nil {
             completion()
         } else {
@@ -99,6 +104,10 @@ class DataFetchSimulator {
     }
     
     func thumbnail(indexPath: IndexPath) -> Data? {
+        guard indexPath.row < recordsFetched else {
+            return nil
+        }
+        
         if let nsData = thumbnailDataCache.object(forKey: indexPath as NSIndexPath) {
             return Data(referencing: nsData)
         } else {
