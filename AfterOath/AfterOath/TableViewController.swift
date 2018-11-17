@@ -13,8 +13,6 @@ class TableViewController: UITableViewController {
     static let kScrollOnLastRowHysteresis = CGFloat(integerLiteral: 45)
     static let kRowHeight = CGFloat(integerLiteral: 180)
     
-    let dataFetcher = DataFetchSimulator()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +25,7 @@ class TableViewController: UITableViewController {
         tableView.rowHeight = TableViewController.kRowHeight
 
         tableView.prefetchDataSource = self
-        dataFetcher.fetchData(maxRow: 3) {
+        DataFetchSimulator.shared.fetchData(maxRow: 3) {
             if let indexPaths = self.tableView.indexPathsForVisibleRows {
                 self.tableView.reloadRows(at: indexPaths, with: .automatic)
             }
@@ -41,15 +39,13 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataFetcher.recordsTotal
+        return DataFetchSimulator.shared.recordsTotal
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thumbnailCell", for: indexPath) as! TableViewCell
-        cell.label.text = String("Row Number: \(indexPath.row)")
-        if let thumbnail = dataFetcher.dataRecord(at: indexPath.row)?["thumbnail"] {
-            cell.assignThumbnail(path: thumbnail)
-        }
+        cell.label.text = String("Row Number: \(indexPath.row)") // TODO: Move to cell class
+        cell.assign(indexPath: indexPath)
         return cell
     }
 
@@ -89,7 +85,7 @@ class TableViewController: UITableViewController {
     */
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let videoPath = dataFetcher.dataRecord(at: indexPath.row)?["hfs"] {
+        if let videoPath = DataFetchSimulator.shared.dataRecord(at: indexPath.row)?["hfs"] {
             let player = AVPlayer(url: URL(string: videoPath)!)
             let avpvc = AVPlayerViewController()
             avpvc.player = player
@@ -112,7 +108,7 @@ class TableViewController: UITableViewController {
 
 extension TableViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        dataFetcher.fetchData(indexPaths: indexPaths)
+        DataFetchSimulator.shared.fetchData(indexPaths: indexPaths)
     }
 }
 

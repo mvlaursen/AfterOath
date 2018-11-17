@@ -12,8 +12,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
-    private var thumbnailPath: String? = nil
-    private var thumbnailLoaded = false
+    private var _indexPath: IndexPath? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,19 +25,32 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func assignThumbnail(path: String) {
-        guard path != thumbnailPath else {
-            return
-        }
-        if let url = URL(string: path) {
-            DispatchQueue.global().async {
-                if let imageData = try? Data(contentsOf: url) {
-                    DispatchQueue.main.async {
-                        self.thumbnailImageView.image = UIImage(data: imageData)
-                        self.thumbnailLoaded = true
-                    }
-                }
+    func assign(indexPath: IndexPath) {
+        _indexPath = indexPath
+        
+        if !updateThumbnail() {
+            DataFetchSimulator.shared.loadThumbnail(indexPath: indexPath) {
+                // If updateThumbnail() fails, we don't retry. It's
+                // possible by the time the thumbnail is loaded, this cell
+                // has been reassigned to a different IndexPath. Instead,
+                // rely on the table view data preloading to trigger retry.
+                self.updateThumbnail()
             }
         }
+    }
+    
+    func updateThumbnail() -> Bool {
+        var succeeded: Bool = false
+        
+        if let indexPath = _indexPath {
+            if let imageData = DataFetchSimulator.shared.thumbnail(indexPath: indexPath) {
+                DispatchQueue.main.async {
+                    self.thumbnailImageView.image = UIImage(data: imageData)
+                }
+                succeeded = true
+            }
+        }
+        
+        return succeeded
     }
 }

@@ -9,6 +9,8 @@
 import Foundation
 
 class DataFetchSimulator {
+    static let shared = DataFetchSimulator()
+    
     typealias DataRecord = Dictionary<String, String>
     
     private let dataRecords: [DataRecord] = [
@@ -33,9 +35,15 @@ class DataFetchSimulator {
         ["thumbnail": "https://i.pinimg.com/originals/5f/ee/b3/5feeb384305ac794d0f92ad7f6fcad76.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://static.wixstatic.com/media/1add48_d0292f4f89494d03b173710c3c9b1664~mv2_d_2268_4032_s_2.jpg/v1/fill/w_900,h_1600,al_c,q_90/file.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"]]
     
+    private let thumbnailDataCache = NSCache<NSIndexPath, NSData>()
+    
     private var fetching = false
     
     var recordsFetched = 0
+    
+    private init() {
+        
+    }
     
     var recordsTotal: Int {
         get {
@@ -70,6 +78,31 @@ class DataFetchSimulator {
             max(maxRow, indexPath.row)
         }
         fetchData(maxRow: maxRow) {
+        }
+    }
+    
+    func loadThumbnail(indexPath: IndexPath, completion: @escaping () -> ()) {
+        if let nsData = thumbnailDataCache.object(forKey: indexPath as NSIndexPath) {
+            completion()
+        } else {
+            if let path = dataRecords[indexPath.row]["thumbnail"] {
+                if let url = URL(string: path) {
+                    DispatchQueue.global().async {
+                        if let imageData = try? Data(contentsOf: url) {
+                            self.thumbnailDataCache.setObject(imageData as NSData, forKey: indexPath as NSIndexPath)
+                            completion()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func thumbnail(indexPath: IndexPath) -> Data? {
+        if let nsData = thumbnailDataCache.object(forKey: indexPath as NSIndexPath) {
+            return Data(referencing: nsData)
+        } else {
+            return nil
         }
     }
 }
