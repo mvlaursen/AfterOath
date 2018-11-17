@@ -12,6 +12,9 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
+    private var thumbnailPath: String? = nil
+    private var thumbnailLoaded = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,10 +27,17 @@ class TableViewCell: UITableViewCell {
     }
     
     func assignThumbnail(path: String) {
-        // TODO: Load the data asynchronously.
+        guard path != thumbnailPath else {
+            return
+        }
         if let url = URL(string: path) {
-            if let imageData = try? Data(contentsOf: url) {
-                thumbnailImageView.image = UIImage(data: imageData)
+            DispatchQueue.global().async {
+                if let imageData = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        self.thumbnailImageView.image = UIImage(data: imageData)
+                        self.thumbnailLoaded = true
+                    }
+                }
             }
         }
     }
