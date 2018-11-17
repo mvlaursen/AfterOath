@@ -41,7 +41,7 @@ class DataFetchSimulator {
             return
         }
         
-        if greatestRow >= dataRecords.count {
+        if greatestRow > recordsFetched - 1 {
             Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
                 self.recordsFetched = greatestRow + 1
                 completion(indexPaths)
