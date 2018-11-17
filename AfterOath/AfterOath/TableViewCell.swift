@@ -30,11 +30,12 @@ class TableViewCell: UITableViewCell {
         
         if !updateThumbnail() {
             DataFetchSimulator.shared.loadThumbnail(indexPath: indexPath) {
-                // If updateThumbnail() fails, we don't retry. It's
-                // possible by the time the thumbnail is loaded, this cell
-                // has been reassigned to a different IndexPath. Instead,
-                // rely on the table view data preloading to trigger retry.
-                self.updateThumbnail()
+                // If updateThumbnail() fails, don't retry. For one thing, it's
+                // likely that the thumbnail we requested is still in the cache
+                // but this cell was reassigned to a new IndexPath while it was
+                // loading, in which case we now need to load thumbnail data
+                // for the new IndexPath.
+                _ = self.updateThumbnail()
             }
         }
     }

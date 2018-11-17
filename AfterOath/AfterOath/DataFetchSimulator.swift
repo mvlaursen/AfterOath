@@ -82,7 +82,7 @@ class DataFetchSimulator {
     }
     
     func loadThumbnail(indexPath: IndexPath, completion: @escaping () -> ()) {
-        if let nsData = thumbnailDataCache.object(forKey: indexPath as NSIndexPath) {
+        if thumbnailDataCache.object(forKey: indexPath as NSIndexPath) != nil {
             completion()
         } else {
             if let path = dataRecords[indexPath.row]["thumbnail"] {
