@@ -28,6 +28,8 @@ class TableViewCell: UITableViewCell {
     func assign(indexPath: IndexPath) {
         _indexPath = indexPath
         
+        label.text = String("Row Number: \(indexPath.row)")
+        
         if !updateThumbnail() {
             DataFetchSimulator.shared.loadThumbnail(indexPath: indexPath) {
                 // If updateThumbnail() fails, don't retry. For one thing, it's

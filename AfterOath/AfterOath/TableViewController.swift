@@ -44,7 +44,6 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thumbnailCell", for: indexPath) as! TableViewCell
-        cell.label.text = String("Row Number: \(indexPath.row)") // TODO: Move to cell class
         cell.assign(indexPath: indexPath)
         return cell
     }
