@@ -47,10 +47,8 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thumbnailCell", for: indexPath) as! TableViewCell
         cell.label.text = String("Row Number: \(indexPath.row)")
-        if let imagePath = dataFetcher.dataRecord(at: indexPath.row)?["thumbnail"] {
-            if let imageData = try? Data(contentsOf: URL(string: imagePath)!) {
-                cell.thumbnailImageView.image = UIImage(data: imageData)
-            }
+        if let thumbnail = dataFetcher.dataRecord(at: indexPath.row)?["thumbnail"] {
+            cell.assignThumbnail(path: thumbnail)
         }
         return cell
     }

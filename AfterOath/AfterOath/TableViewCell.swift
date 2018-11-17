@@ -22,5 +22,13 @@ class TableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func assignThumbnail(path: String) {
+        // TODO: Load the data asynchronously.
+        if let url = URL(string: path) {
+            if let imageData = try? Data(contentsOf: url) {
+                thumbnailImageView.image = UIImage(data: imageData)
+            }
+        }
+    }
 }
