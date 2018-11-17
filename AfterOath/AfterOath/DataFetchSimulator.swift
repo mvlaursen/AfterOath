@@ -11,7 +11,7 @@ import Foundation
 class DataFetchSimulator {
     typealias DataRecord = Dictionary<String, String>
     
-    private static let remoteData: [DataRecord] = [
+    private let dataRecords: [DataRecord] = [
         ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://simonscat.com/wp-content/uploads/2017/10/2593-1-344351__lQ8mYrpw.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://i.redd.it/eoyuaw26tjp01.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
@@ -23,10 +23,13 @@ class DataFetchSimulator {
         ["thumbnail": "https://i.pinimg.com/originals/5f/ee/b3/5feeb384305ac794d0f92ad7f6fcad76.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://static.wixstatic.com/media/1add48_d0292f4f89494d03b173710c3c9b1664~mv2_d_2268_4032_s_2.jpg/v1/fill/w_900,h_1600,al_c,q_90/file.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"]]
     
-    var localData: [DataRecord] = []
+    var recordsFetched: Int = 2
     
-    init() {
-        self.localData = Array(DataFetchSimulator.remoteData[0...2])
+    func dataRecord(at index: Int) -> DataRecord? {
+        guard index < recordsFetched else {
+            return nil
+        }
+        return dataRecords[index]
     }
     
     func fetchData(indexPaths: [IndexPath], completion: @escaping ([IndexPath]) -> ()) {
@@ -34,11 +37,17 @@ class DataFetchSimulator {
             max(greatestRow, indexPath.row)
         }
         
-        if greatestRow >= 0 && greatestRow < DataFetchSimulator.remoteData.count && greatestRow >= localData.count {
+        guard greatestRow >= 0 && greatestRow < dataRecords.count else {
+            return
+        }
+        
+        if greatestRow >= dataRecords.count {
             Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
-                self.localData = Array(DataFetchSimulator.remoteData[0...greatestRow])
+                self.recordsFetched = greatestRow + 1
                 completion(indexPaths)
             }
+        } else {
+            completion(indexPaths)
         }
     }
 }
