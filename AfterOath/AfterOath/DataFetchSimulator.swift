@@ -16,7 +16,6 @@ class DataFetchSimulator {
     static let simulatedDelay = 10.0
     
     // TODO: Should simulate using JSON to load this data.
-    // TODO: Some of the thumbnails are http and won't load becasuse of ATS policy.
     private let dataRecords: [DataRecord] = [
         ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://simonscat.com/wp-content/uploads/2017/10/2593-1-344351__lQ8mYrpw.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
