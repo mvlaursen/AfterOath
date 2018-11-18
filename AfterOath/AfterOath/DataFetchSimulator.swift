@@ -13,7 +13,7 @@ class DataFetchSimulator {
 
     static let shared = DataFetchSimulator()
     
-    static let simulatedDelay = 10.0
+    static let simulatedDelay = 2.0
     
     // TODO: Should simulate using JSON to load this data.
     private let dataRecords: [DataRecord] = [
