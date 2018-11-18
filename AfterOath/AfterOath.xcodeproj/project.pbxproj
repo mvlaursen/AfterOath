@@ -15,7 +15,19 @@
 		3B298EBC219B556A001331C8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B298EBB219B556A001331C8 /* TableViewController.swift */; };
 		3B298EBE219B55B1001331C8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B298EBD219B55B1001331C8 /* TableViewCell.swift */; };
 		3B298EC3219B6139001331C8 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B298EC2219B6139001331C8 /* AVKit.framework */; };
+		3BB5835F21A1E6D700064D47 /* AfterOathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB5835E21A1E6D700064D47 /* AfterOathTests.swift */; };
+		3BB5836621A1E76400064D47 /* DataFetchSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1D5994219F5D06004E66CA /* DataFetchSimulator.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3BB5836121A1E6D700064D47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B298E9E219B5523001331C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B298EA5219B5523001331C8;
+			remoteInfo = AfterOath;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3B1D5994219F5D06004E66CA /* DataFetchSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchSimulator.swift; sourceTree = "<group>"; };
@@ -28,6 +40,9 @@
 		3B298EBB219B556A001331C8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		3B298EBD219B55B1001331C8 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3B298EC2219B6139001331C8 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		3BB5835C21A1E6D700064D47 /* AfterOathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AfterOathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BB5835E21A1E6D700064D47 /* AfterOathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterOathTests.swift; sourceTree = "<group>"; };
+		3BB5836021A1E6D700064D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +54,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3BB5835921A1E6D700064D47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				3B298EA8219B5523001331C8 /* AfterOath */,
+				3BB5835D21A1E6D700064D47 /* AfterOathTests */,
 				3B298EA7219B5523001331C8 /* Products */,
 				3B298EC1219B6138001331C8 /* Frameworks */,
 			);
@@ -55,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				3B298EA6219B5523001331C8 /* AfterOath.app */,
+				3BB5835C21A1E6D700064D47 /* AfterOathTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +106,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3BB5835D21A1E6D700064D47 /* AfterOathTests */ = {
+			isa = PBXGroup;
+			children = (
+				3BB5835E21A1E6D700064D47 /* AfterOathTests.swift */,
+				3BB5836021A1E6D700064D47 /* Info.plist */,
+			);
+			path = AfterOathTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -102,6 +135,24 @@
 			productReference = 3B298EA6219B5523001331C8 /* AfterOath.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3BB5835B21A1E6D700064D47 /* AfterOathTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BB5836521A1E6D700064D47 /* Build configuration list for PBXNativeTarget "AfterOathTests" */;
+			buildPhases = (
+				3BB5835821A1E6D700064D47 /* Sources */,
+				3BB5835921A1E6D700064D47 /* Frameworks */,
+				3BB5835A21A1E6D700064D47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3BB5836221A1E6D700064D47 /* PBXTargetDependency */,
+			);
+			name = AfterOathTests;
+			productName = AfterOathTests;
+			productReference = 3BB5835C21A1E6D700064D47 /* AfterOathTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -114,6 +165,10 @@
 				TargetAttributes = {
 					3B298EA5219B5523001331C8 = {
 						CreatedOnToolsVersion = 10.1;
+					};
+					3BB5835B21A1E6D700064D47 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3B298EA5219B5523001331C8;
 					};
 				};
 			};
@@ -131,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				3B298EA5219B5523001331C8 /* AfterOath */,
+				3BB5835B21A1E6D700064D47 /* AfterOathTests */,
 			);
 		};
 /* End PBXProject section */
@@ -143,6 +199,13 @@
 				3B298EB4219B5524001331C8 /* LaunchScreen.storyboard in Resources */,
 				3B298EB1219B5524001331C8 /* Assets.xcassets in Resources */,
 				3B298EAF219B5523001331C8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BB5835A21A1E6D700064D47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +223,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3BB5835821A1E6D700064D47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BB5835F21A1E6D700064D47 /* AfterOathTests.swift in Sources */,
+				3BB5836621A1E76400064D47 /* DataFetchSimulator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3BB5836221A1E6D700064D47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B298EA5219B5523001331C8 /* AfterOath */;
+			targetProxy = 3BB5836121A1E6D700064D47 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3B298EAD219B5523001331C8 /* Main.storyboard */ = {
@@ -334,6 +414,46 @@
 			};
 			name = Release;
 		};
+		3BB5836321A1E6D700064D47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NM9E6W7574;
+				INFOPLIST_FILE = AfterOathTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appamajigger.AfterOathTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AfterOath.app/AfterOath";
+			};
+			name = Debug;
+		};
+		3BB5836421A1E6D700064D47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NM9E6W7574;
+				INFOPLIST_FILE = AfterOathTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appamajigger.AfterOathTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AfterOath.app/AfterOath";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -351,6 +471,15 @@
 			buildConfigurations = (
 				3B298EB9219B5524001331C8 /* Debug */,
 				3B298EBA219B5524001331C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BB5836521A1E6D700064D47 /* Build configuration list for PBXNativeTarget "AfterOathTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BB5836321A1E6D700064D47 /* Debug */,
+				3BB5836421A1E6D700064D47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

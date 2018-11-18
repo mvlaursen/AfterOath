@@ -60,6 +60,13 @@ class DataFetchSimulator {
         return dataRecords[index]
     }
     
+    // For practicing using JSON. Only used in unit tests.
+    func dataRecordsAsJSON() -> Data? {
+        let encoder = JSONEncoder()
+        let data = try? encoder.encode(dataRecords)
+        return data
+    }
+    
     func fetchData(maxRow: Int, completion: @escaping () -> ()) {
         guard maxRow >= 0 && maxRow < dataRecords.count else {
             return
