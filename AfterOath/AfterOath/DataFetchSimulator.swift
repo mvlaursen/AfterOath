@@ -25,7 +25,7 @@ class DataFetchSimulator {
         ["thumbnail": "https://i.pinimg.com/originals/d6/aa/ca/d6aaca39aebcd703a2aa5bc4f5ef0eef.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://www.cathouseonthekings.com/animals/98/a_014898_1481414511.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/42206224/1/?bust=1531795990", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
-        ["thumbnail": "http://in1li1tgpn-flywheel.netdna-ssl.com/wp-content/uploads/2015/11/pretty-kitty-head-tilt.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
+        ["thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGyMUC428DfQQwwUx1Mr3XEDtzkesbG_nm32gpgBExhhd2uUM7mw", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://i.pinimg.com/originals/5f/ee/b3/5feeb384305ac794d0f92ad7f6fcad76.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://static.wixstatic.com/media/1add48_d0292f4f89494d03b173710c3c9b1664~mv2_d_2268_4032_s_2.jpg/v1/fill/w_900,h_1600,al_c,q_90/file.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
@@ -35,7 +35,7 @@ class DataFetchSimulator {
         ["thumbnail": "https://i.pinimg.com/originals/d6/aa/ca/d6aaca39aebcd703a2aa5bc4f5ef0eef.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://www.cathouseonthekings.com/animals/98/a_014898_1481414511.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/42206224/1/?bust=1531795990", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
-        ["thumbnail": "http://in1li1tgpn-flywheel.netdna-ssl.com/wp-content/uploads/2015/11/pretty-kitty-head-tilt.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
+        ["thumbnail": "https://1.bp.blogspot.com/-5uYBVmLIGuc/WcK7Nt3ubsI/AAAAAAABz6s/-XO6FTU-R88a18sNazUurkewaQxfsEFHQCLcBGAs/s1600/funny-cat-277-26.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://i.pinimg.com/originals/5f/ee/b3/5feeb384305ac794d0f92ad7f6fcad76.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"],
         ["thumbnail": "https://static.wixstatic.com/media/1add48_d0292f4f89494d03b173710c3c9b1664~mv2_d_2268_4032_s_2.jpg/v1/fill/w_900,h_1600,al_c,q_90/file.jpg", "hfs": "https://www.radiantmediaplayer.com/media/bbb-360p.mp4"]]
     
