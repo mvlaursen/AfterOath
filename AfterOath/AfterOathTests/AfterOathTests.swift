@@ -19,10 +19,18 @@ class AfterOathTests: XCTestCase {
     }
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         let jsonData = DataFetchSimulator.shared.dataRecordsAsJSON()
+        
         XCTAssert(jsonData != nil)
+        if let jsonDataUnwrapped = jsonData {
+            if let json = try? JSONSerialization.jsonObject(with: jsonDataUnwrapped) {
+                if let dataRecords = json as? [DataFetchSimulator.DataRecord] {
+                    XCTAssert(dataRecords.count == 20)
+                    XCTAssert(dataRecords[0]["thumbnail"] == "https://i.pinimg.com/originals/a4/eb/a5/a4eba5a87811eef3e5e17fbeb606703e.jpg")
+                    XCTAssert(dataRecords[0]["hfs"] == "https://www.radiantmediaplayer.com/media/bbb-360p.mp4")
+                }
+            }
+        }
     }
 
     func testPerformanceExample() {
