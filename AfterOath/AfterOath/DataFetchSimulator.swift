@@ -100,7 +100,7 @@ class DataFetchSimulator {
         } else {
             if let path = dataRecords[indexPath.row]["thumbnail"] {
                 if let url = URL(string: path) {
-                    DispatchQueue.global().async {
+                    DispatchQueue.global(qos: .utility).async {
                         if let imageData = try? Data(contentsOf: url) {
                             self.thumbnailDataCache.setObject(imageData as NSData, forKey: indexPath as NSIndexPath)
                             completion()
